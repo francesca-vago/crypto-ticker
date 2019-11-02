@@ -4,7 +4,7 @@ class CryptoTicker extends Component {
   constructor() {
     super();
 
-    this.color = 'yellow'
+    this.color = ''
   }
 
   changeColor(props) {
@@ -16,7 +16,7 @@ class CryptoTicker extends Component {
     else if (this.props.lastPrice > this.props.price) {
       this.color = 'red'
     }
-    else {
+    else if (this.props.lastPrice === this.props.price) {
       this.color = 'yellow'
     }
   }

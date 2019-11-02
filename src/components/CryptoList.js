@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CryptoTicker from './CryptoTicker.js';
+import SaveButton from './Button.js'
 
 
 class CryptoList extends Component {
@@ -33,7 +34,6 @@ class CryptoList extends Component {
     this.setState({
       tickers: resp.data
     });
-    console.log(resp.data);
   }
 
   componentDidMount() {
@@ -43,19 +43,24 @@ class CryptoList extends Component {
 
   render() {
     const domTickers = Object.keys(this.state.tickers).map((currency) => {
-        return (
-          <CryptoTicker
-            key= {currency}
-            name= {currency}
-            price= {this.state.tickers[currency].usd}
-            lastPrice= {this.state.tickers[currency].lastPrice}
-          />
-        )
+      return (
+        <CryptoTicker
+          key= {currency}
+          name= {currency}
+          price= {this.state.tickers[currency].usd}
+          lastPrice= {this.state.tickers[currency].lastPrice}
+        />
+      )
     });
 
+    console.log("render list");
+    console.log(this.state.tickers);
     return (
       <div>
         {domTickers}
+        <SaveButton
+          prices= {this.state.tickers}
+         />
       </div>
     )
   }
