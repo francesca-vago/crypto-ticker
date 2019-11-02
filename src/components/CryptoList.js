@@ -10,9 +10,10 @@ class CryptoList extends Component {
     this.apiClient = new CoinGecko();
 
     this.state = {
-      tickers: [],
-      lastPrices: []
+      tickers: {}
     }
+
+    this.firstTime = true;
   }
 
   async getTickers() {
@@ -20,6 +21,14 @@ class CryptoList extends Component {
       ids: ['bitcoin', 'ethereum', 'litecoin', 'xrphd'],
       vs_currencies: ['usd'],
     });
+
+    if (this.firstTime) {
+      this.firstTime = false;
+    } else {
+      for (let currency in resp.data) {
+        resp.data[currency].lastPrice = this.state.tickers[currency].usd;
+      }
+    }
 
     this.setState({
       tickers: resp.data
@@ -29,7 +38,7 @@ class CryptoList extends Component {
 
   componentDidMount() {
     this.getTickers();
-    this.interval = setInterval(() => this.getTickers(), 60000)
+    this.interval = setInterval(() => this.getTickers(), 10000)
   }
 
   render() {
@@ -39,6 +48,7 @@ class CryptoList extends Component {
             key= {currency}
             name= {currency}
             price= {this.state.tickers[currency].usd}
+            lastPrice= {this.state.tickers[currency].lastPrice}
           />
         )
     });
