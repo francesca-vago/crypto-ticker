@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import { Container, Row, Col } from 'reactstrap';
+import { Form, FormGroup, Label, Input } from 'reactstrap';
 import CryptoTicker from './CryptoTicker.js';
-import SaveButton from './Button.js'
+import SaveButton from './Button.js';
+import Header from './Header.js';
 
 
 class CryptoList extends Component {
@@ -11,24 +14,21 @@ class CryptoList extends Component {
     this.apiClient = new CoinGecko();
 
     this.state = {
-      tickers: {}
+      tickers: {},
     }
 
-    this.firstTime = true;
+    this.currencies= ['Bitcoin']
+    this.allCurrencies = ['Bitcoin','Bitcoin-Cash','Cardano','Dash','EOS','Ethereum','Litecoin','NEO','ZCash','XRPHD','Monero']
   }
 
   async getTickers() {
     let resp = await this.apiClient.simple.price({
-      ids: ['bitcoin', 'ethereum', 'litecoin', 'xrphd'],
+      ids: this.currencies,
       vs_currencies: ['usd'],
     });
 
-    if (this.firstTime) {
-      this.firstTime = false;
-    } else {
-      for (let currency in resp.data) {
-        resp.data[currency].lastPrice = this.state.tickers[currency].usd;
-      }
+    for (let currency in resp.data) {
+      resp.data[currency].lastPrice = this.state.tickers[currency] ? this.state.tickers[currency].usd : 0;
     }
 
     this.setState({
@@ -37,15 +37,25 @@ class CryptoList extends Component {
   }
 
   componentDidMount() {
+    this.getTickers(this.options);
+    this.interval = setInterval(() => this.getTickers(), 60 * 1000)
+  }
+
+  handleChange = (event) => {
+    if (event.target.checked) {
+      this.currencies.push(event.target.value)
+    }
+    else {
+      this.currencies = this.currencies.filter((currency) => currency !== event.target.value);
+    }
     this.getTickers();
-    this.interval = setInterval(() => this.getTickers(), 10000)
   }
 
   render() {
     const domTickers = Object.keys(this.state.tickers).map((currency) => {
       return (
         <CryptoTicker
-          key= {currency}
+          key= {currency.id}
           name= {currency}
           price= {this.state.tickers[currency].usd}
           lastPrice= {this.state.tickers[currency].lastPrice}
@@ -53,12 +63,36 @@ class CryptoList extends Component {
       )
     });
 
+    const checkboxes = this.allCurrencies.map((currency) => {
+      return (
+        <FormGroup check>
+          <Label check>
+            <Input type="checkbox" onChange={this.handleChange} value={currency}/> {currency}
+          </Label>
+        </FormGroup>
+      )
+    });
+
     return (
-      <div>
-        {domTickers}
-        <SaveButton
-          prices= {this.state.tickers}
-         />
+      <div className="appContainer">
+        <Header />
+        <Container>
+          <Row>
+            <Col className="container">
+              <Form className="formContainer">
+                {checkboxes}
+              </Form>
+            </Col>
+            <Col className="container">
+              <div>
+                {domTickers}
+                <SaveButton
+                  prices= {this.state.tickers}
+                 />
+              </div>
+            </Col>
+          </Row>
+        </Container>
       </div>
     )
   }
