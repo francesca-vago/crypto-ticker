@@ -53,8 +53,6 @@ class CryptoList extends Component {
       )
     });
 
-    console.log("render list");
-    console.log(this.state.tickers);
     return (
       <div>
         {domTickers}

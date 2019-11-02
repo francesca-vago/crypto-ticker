@@ -26,7 +26,7 @@ class CryptoTicker extends Component {
 
     return (
       <div>
-        <h1 style={{color: this.color}}>{this.props.name} - {this.props.price}</h1>
+        <h1 style={{color: this.color}}>{this.props.name} - ${this.props.price}</h1>
       </div>
     )
   }

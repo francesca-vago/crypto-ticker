@@ -1,0 +1,109 @@
+{
+  "prices": [
+    {
+      "prices": {
+        "litecoin": {
+          "usd": 58.86
+        },
+        "xrphd": {
+          "usd": 0.00044801
+        },
+        "bitcoin": {
+          "usd": 9335.88
+        },
+        "ethereum": {
+          "usd": 183.73
+        }
+      },
+      "id": 1
+    },
+    {
+      "litecoin": {
+        "usd": 58.86
+      },
+      "bitcoin": {
+        "usd": 9335.42
+      },
+      "xrphd": {
+        "usd": 0.00048342
+      },
+      "ethereum": {
+        "usd": 184.94
+      },
+      "timestamp": 1572712455702,
+      "id": 2
+    },
+    {
+      "litecoin": {
+        "usd": 58.9,
+        "lastPrice": 58.9
+      },
+      "bitcoin": {
+        "usd": 9320.46,
+        "lastPrice": 9320.46
+      },
+      "xrphd": {
+        "usd": 0.00047308,
+        "lastPrice": 0.00047308
+      },
+      "ethereum": {
+        "usd": 184.63,
+        "lastPrice": 184.63
+      },
+      "timestamp": 1572713574016,
+      "id": 3
+    },
+    {
+      "litecoin": {
+        "usd": 58.9
+      },
+      "bitcoin": {
+        "usd": 9320.46
+      },
+      "xrphd": {
+        "usd": 0.00047308
+      },
+      "ethereum": {
+        "usd": 184.63
+      },
+      "timestamp": 1572713594509,
+      "id": 4
+    },
+    {
+      "litecoin": {
+        "usd": 58.9
+      },
+      "bitcoin": {
+        "usd": 9320.46
+      },
+      "xrphd": {
+        "usd": 0.00047308
+      },
+      "ethereum": {
+        "usd": 184.63
+      },
+      "timestamp": 1572713595797,
+      "id": 5
+    },
+    {
+      "litecoin": {
+        "usd": 58.95,
+        "lastPrice": 58.95
+      },
+      "xrphd": {
+        "usd": 0.00042523,
+        "lastPrice": 0.00042523
+      },
+      "ethereum": {
+        "usd": 184.67,
+        "lastPrice": 184.67
+      },
+      "bitcoin": {
+        "usd": 9323.79,
+        "lastPrice": 9323.79
+      },
+      "timestamp": 1572713805884,
+      "id": 6
+    }
+  ]
+}

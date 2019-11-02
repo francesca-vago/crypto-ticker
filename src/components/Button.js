@@ -4,7 +4,17 @@ import { Button } from 'reactstrap';
 class SaveButton extends Component {
 
   handleClick = (event) => {
-    console.log(JSON.stringify(this.props));
+    let body = this.props.prices;
+    body.timestamp = Date.now();
+
+    fetch('http://localhost:8080/prices/', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body)
+    })
   }
 
   render() {
