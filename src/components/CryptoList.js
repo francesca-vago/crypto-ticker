@@ -7,27 +7,29 @@ class CryptoList extends Component {
     super();
 
     const CoinGecko = require('coingecko-api');
-    this.api_client = new CoinGecko();
+    this.apiClient = new CoinGecko();
 
     this.state = {
-      tickers: []
+      tickers: [],
+      lastPrices: []
     }
   }
 
-  componentDidMount() {
-    let getTickers = async() => {
-      let resp = await this.api_client.simple.price({
-        ids: ['bitcoin', 'ethereum', 'litecoin', 'xrphd'],
-        vs_currencies: ['usd'],
-      });
-      return resp.data
-    }
-    getTickers().then(
-      (response) => {
-        this.setState({
-          tickers: response
-        });
+  async getTickers() {
+    let resp = await this.apiClient.simple.price({
+      ids: ['bitcoin', 'ethereum', 'litecoin', 'xrphd'],
+      vs_currencies: ['usd'],
     });
+
+    this.setState({
+      tickers: resp.data
+    });
+    console.log(resp.data);
+  }
+
+  componentDidMount() {
+    this.getTickers();
+    this.interval = setInterval(() => this.getTickers(), 60000)
   }
 
   render() {
