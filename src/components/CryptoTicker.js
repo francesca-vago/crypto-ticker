@@ -1,36 +1,37 @@
 import React, { Component } from 'react';
 
 class CryptoTicker extends Component {
-  constructor() {
-    super();
+    constructor() {
+        super();
 
-    this.color = ''
-  }
-
-  changeColor(props) {
-    // change to green if lastPrice < price
-    if (this.props.lastPrice < this.props.price && this.props.lastPrice !== 0) {
-      this.color = '#94aa2a'
+        this.color = '';
     }
-    // else if lastPrice > price to red
-    else if (this.props.lastPrice > this.props.price) {
-      this.color = '#cf455c'
-    }
-    else if (this.props.lastPrice === this.props.price) {
-      this.color = '#ffdd67'
-    }
-  }
 
-  render(props) {
-    this.changeColor()
+    changeColor(props) {
+        // change to green if lastPrice < price
+        if (this.props.lastPrice < this.props.price && this.props.lastPrice !== 0) {
+            this.color = '#94aa2a';
+        }
+        // else if lastPrice > price to red
+        else if (this.props.lastPrice > this.props.price) {
+            this.color = '#cf455c';
+        }
+        // default yellow
+        else {
+            this.color = '#ffdd67';
+        }
+    }
 
-    return (
-      <tr style={{backgroundColor: this.color}} className="ticker">
-        <td>{this.props.name}</td>
-        <td>${this.props.price}</td>
-      </tr>
-    )
-  }
+    render() {
+        this.changeColor();
+
+        return (
+            <tr style={{ backgroundColor: this.color }} className="ticker">
+                <td>{this.props.name}</td>
+                <td>${this.props.price}</td>
+            </tr>
+        );
+    }
 }
 
 export default CryptoTicker;
