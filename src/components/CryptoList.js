@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col, Table } from 'reactstrap';
 import { Form, FormGroup, Label, Input } from 'reactstrap';
 import CryptoTicker from './CryptoTicker.js';
 import SaveButton from './Button.js';
-import Header from './Header.js';
+
 
 
 class CryptoList extends Component {
@@ -17,8 +17,20 @@ class CryptoList extends Component {
       tickers: {},
     }
 
-    this.currencies= ['Bitcoin']
-    this.allCurrencies = ['Bitcoin','Bitcoin-Cash','Cardano','Dash','EOS','Ethereum','Litecoin','NEO','ZCash','XRPHD','Monero']
+    this.currencies = ['Bitcoin']
+    this.allCurrencies = [
+                          'Bitcoin',
+                          'Bitcoin-Cash',
+                          'Cardano',
+                          'Dash',
+                          'EOS',
+                          'Ethereum',
+                          'Litecoin',
+                          'NEO',
+                          'ZCash',
+                          'XRPHD',
+                          'Monero'
+                        ]
   }
 
   async getTickers() {
@@ -52,10 +64,11 @@ class CryptoList extends Component {
   }
 
   render() {
+
     const domTickers = Object.keys(this.state.tickers).map((currency) => {
       return (
         <CryptoTicker
-          key= {currency.id}
+          key= {currency}
           name= {currency}
           price= {this.state.tickers[currency].usd}
           lastPrice= {this.state.tickers[currency].lastPrice}
@@ -65,35 +78,46 @@ class CryptoList extends Component {
 
     const checkboxes = this.allCurrencies.map((currency) => {
       return (
-        <FormGroup check>
+        <FormGroup check key={currency}>
           <Label check>
-            <Input type="checkbox" onChange={this.handleChange} value={currency}/> {currency}
+            <Input
+              type="checkbox"
+              onChange={this.handleChange}
+              value={currency}
+            /> {currency}
           </Label>
         </FormGroup>
       )
     });
 
     return (
-      <div className="appContainer">
-        <Header />
-        <Container>
-          <Row>
-            <Col className="container">
-              <Form className="formContainer">
-                {checkboxes}
-              </Form>
-            </Col>
-            <Col className="container">
-              <div>
+      <Container>
+        <Row>
+          <Col className="formContainer">
+            <Form>
+              {checkboxes}
+            </Form>
+          </Col>
+          <Col md={{ size: 6, offset: 3 }} className="tableContainer">
+            <Table striped>
+              <thead>
+                <tr>
+                  <th>Currency</th>
+                  <th>Price</th>
+                </tr>
+              </thead>
+              <tbody>
                 {domTickers}
-                <SaveButton
-                  prices= {this.state.tickers}
-                 />
-              </div>
-            </Col>
-          </Row>
-        </Container>
-      </div>
+              </tbody>
+            </Table>
+          </Col>
+        </Row>
+        <Row>
+          <Col sm="12" md={{ size: 6, offset: 3 }}>
+            <SaveButton prices= {this.state.tickers} />
+          </Col>
+        </Row>
+      </Container>
     )
   }
 }

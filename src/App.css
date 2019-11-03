@@ -2,10 +2,14 @@
   text-align: center;
 }
 
-.container {
+.mainHeader {
+  margin-bottom: 30px;
+}
+
+.tableContainer {
   display: flex;
   justify-content: center;
-  align-items: center;
+  padding: 0;
   margin: auto;
 }
 
@@ -15,4 +19,12 @@
   height: auto;
   text-align: left;
   margin: 20px 0;
+}
+
+.ticker {
+  font-size: 1.5rem;
+}
+
+.buttonContainer {
+  position: fixed;
 }

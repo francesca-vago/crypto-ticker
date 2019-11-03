@@ -10,14 +10,14 @@ class CryptoTicker extends Component {
   changeColor(props) {
     // change to green if lastPrice < price
     if (this.props.lastPrice < this.props.price && this.props.lastPrice !== 0) {
-      this.color = 'green'
+      this.color = '#94aa2a'
     }
     // else if lastPrice > price to red
     else if (this.props.lastPrice > this.props.price) {
-      this.color = 'red'
+      this.color = '#cf455c'
     }
     else if (this.props.lastPrice === this.props.price) {
-      this.color = 'yellow'
+      this.color = '#ffdd67'
     }
   }
 
@@ -25,9 +25,10 @@ class CryptoTicker extends Component {
     this.changeColor()
 
     return (
-      <div>
-        <h1 style={{color: this.color}}>{this.props.name} - ${this.props.price}</h1>
-      </div>
+      <tr style={{backgroundColor: this.color}} className="ticker">
+        <td>{this.props.name}</td>
+        <td>${this.props.price}</td>
+      </tr>
     )
   }
 }
