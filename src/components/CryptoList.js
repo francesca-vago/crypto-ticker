@@ -15,7 +15,7 @@ class CryptoList extends Component {
             tickers: {},
         }
 
-        this.currencies = ['Bitcoin']
+        this.currencies = ['Bitcoin', 'Bitcoin-Cash', 'Ethereum', 'Litecoin' ]
         this.allCurrencies = [
             'Bitcoin',
             'Bitcoin-Cash',
@@ -88,7 +88,7 @@ class CryptoList extends Component {
                               type="checkbox"
                               onChange={this.handleChange}
                               value={currency}
-                              defaultChecked={currency === 'Bitcoin' ? true : false}
+                              defaultChecked={this.currencies.includes(currency) ? true : false}
                         /> {currency}
                     </Label>
                 </FormGroup>
