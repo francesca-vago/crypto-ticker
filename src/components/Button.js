@@ -23,7 +23,7 @@ class SaveButton extends Component {
             <div>
                 <Button
                     outline
-                    color="primary"
+                    className="saveButton"
                     size="lg"
                     onClick={this.handleClick}
                 >Save Prices</Button>

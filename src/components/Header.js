@@ -1,7 +1,16 @@
 import React from 'react';
+import cryptocurrency from '../cryptocurrency.png';
 
 const Header = () => {
-    return <h1 className="mainHeader">Bitcoin Ticker</h1>
+    return (
+        <div className="mainHeader">
+          <span><img src={cryptocurrency} alt="" className="logo"/></span>
+          <div>
+            <h1>Crypto Ticker</h1>
+            <h3>Overview</h3>
+          </div>
+        </div>
+    )
 }
 
 export default Header;

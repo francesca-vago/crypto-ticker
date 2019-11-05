@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Table } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 import { Form, FormGroup, Label, Input } from 'reactstrap';
 import CryptoTicker from './CryptoTicker.js';
 import SaveButton from './Button.js';
+import Header from './Header.js';
+import Sidebar from './SideBar.js'
 
 class CryptoList extends Component {
     constructor() {
@@ -84,45 +86,44 @@ class CryptoList extends Component {
             return (
                 <FormGroup check key={currency}>
                     <Label check>
-                        <Input
-                              type="checkbox"
-                              onChange={this.handleChange}
-                              value={currency}
-                              defaultChecked={this.currencies.includes(currency) ? true : false}
-                        /> {currency}
+                      <div className="checkbox">
+                          <Input
+                                type="checkbox"
+                                onChange={this.handleChange}
+                                value={currency}
+                                defaultChecked={this.currencies.includes(currency) ? true : false}
+                          /> {currency}
+                      </div>
                     </Label>
                 </FormGroup>
             )
         });
 
         return (
-            <Container>
-                <Row>
-                    <Col className="formContainer">
-                        <Form>
-                            {checkboxes}
-                        </Form>
-                    </Col>
-                    <Col md={{ size: 6, offset: 3 }} className="tableContainer">
-                        <Table striped>
-                            <thead>
-                                <tr>
-                                    <th>Currency</th>
-                                    <th>Price</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {domTickers}
-                            </tbody>
-                        </Table>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col sm="12" md={{ size: 6, offset: 3 }}>
-                        <SaveButton prices={this.state.tickers} />
-                    </Col>
-                </Row>
-            </Container>
+                <Container className="m-0">
+                    <Row>
+                      <Col sm="3" className="sideBar">
+                        <Sidebar />
+                      </Col>
+                      <Col sm="9" className="mainContainer">
+                        <div className="d-flex justify-content-between">
+                            <div>
+                                <Header />
+                                <div className="cardsContainer">
+                                    {domTickers}
+                                </div>
+                            </div>
+                            <div className="formContainer">
+                                <Form>
+                                    {checkboxes}
+                                </Form>
+                                <SaveButton prices={this.state.tickers} />
+                            </div>
+                        </div>
+                      </Col>
+                    </Row>
+                </Container>
+
         )
     }
 }
