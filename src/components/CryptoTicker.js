@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Card, CardBody, CardTitle, CardSubtitle, CardText } from 'reactstrap';
-import wave from '../Waveform.png';
-import wave2 from '../Waveform-upside.png';
+import wave1 from '../wave1.png'
+import wave2 from '../wave2.png';
+import wave3 from '../wave3.png';
+import wave4 from '../wave4.png';
 import bitcoin from '../bitcoin.png';
 import bitcoincash from '../bitcoin-cash.png';
 import ethereum from '../ethereum.jpg';
@@ -49,12 +51,12 @@ class CryptoTicker extends Component {
 
         if (this.props.name === 'bitcoin') {
           this.logo = <img src={bitcoin} alt="" className="cardLogo"/>
-          this.cardImage = <img src={wave} alt="" className="cardImage" />
+          this.cardImage = <img src={wave3} alt="" className="cardImage" />
         }
 
         else if (this.props.name === 'bitcoin-cash') {
           this.logo = <img src={bitcoincash} alt="" className="bitcoinCashLogo"/>
-          this.cardImage = <img src={wave} alt="" className="cardImage" />
+          this.cardImage = <img src={wave4} alt="" className="cardImage" />
         }
 
         else if (this.props.name === 'ethereum') {
@@ -64,7 +66,7 @@ class CryptoTicker extends Component {
 
         else if (this.props.name === 'litecoin') {
           this.logo = <img src={litecoin} alt="" className="cardLogo"/>
-          this.cardImage = <img src={wave2} alt="" className="cardImage" />
+          this.cardImage = <img src={wave1} alt="" className="cardImage" />
         }
 
         return (
