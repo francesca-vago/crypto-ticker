@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { Card, CardBody, CardTitle, CardSubtitle, CardText } from 'reactstrap';
 import wave from '../Waveform.png';
+import wave2 from '../Waveform-upside.png';
+import bitcoin from '../bitcoin.png';
+import bitcoincash from '../bitcoin-cash.png';
+import ethereum from '../ethereum.jpg';
+import litecoin from '../litecoin.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDoubleUp, faAngleDoubleDown, faEquals } from '@fortawesome/free-solid-svg-icons';
 
@@ -11,6 +16,8 @@ class CryptoTicker extends Component {
         this.color = '';
         this.icon = '';
         this.percentage = 0;
+        this.logo = '';
+        this.cardImage = '';
     }
 
     changeColor(props) {
@@ -40,16 +47,38 @@ class CryptoTicker extends Component {
     render() {
         this.changeColor();
 
+        if (this.props.name === 'bitcoin') {
+          this.logo = <img src={bitcoin} alt="" className="cardLogo"/>
+          this.cardImage = <img src={wave} alt="" className="cardImage" />
+        }
+
+        else if (this.props.name === 'bitcoin-cash') {
+          this.logo = <img src={bitcoincash} alt="" className="bitcoinCashLogo"/>
+          this.cardImage = <img src={wave} alt="" className="cardImage" />
+        }
+
+        else if (this.props.name === 'ethereum') {
+          this.logo = <img src={ethereum} alt="" className="cardLogo"/>
+          this.cardImage = <img src={wave2} alt="" className="cardImage" />
+        }
+
+        else if (this.props.name === 'litecoin') {
+          this.logo = <img src={litecoin} alt="" className="cardLogo"/>
+          this.cardImage = <img src={wave2} alt="" className="cardImage" />
+        }
+
         return (
           <div>
               <Card>
                   <CardBody className="ticker d-flex align-items-center justify-content-center">
-                    <div>
+                    <div className={ (this.props.name === 'bitcoin-cash') ? 'cardBitcoinCash' : 'cardContent'}>
+                      {this.logo}
                       <CardTitle>{this.props.name.toUpperCase()}</CardTitle>
                       <CardSubtitle className="price">${this.props.price}</CardSubtitle>
                       <CardText style={{ color: this.color }}> {this.icon} {this.percentageRound}% </CardText>
-                      <img src={wave} alt="" className="cardImage"/>
                     </div>
+                    {this.cardImage}
+                    <div className="colorFill"></div>
                   </CardBody>
               </Card>
           </div>

@@ -88,7 +88,7 @@ class CryptoList extends Component {
                     <Label check>
                       <div className="checkbox">
                           <Input
-                                type="checkbox"
+                                type="radio"
                                 onChange={this.handleChange}
                                 value={currency}
                                 defaultChecked={this.currencies.includes(currency) ? true : false}
@@ -108,16 +108,19 @@ class CryptoList extends Component {
                       <Col sm="9" className="mainContainer">
                         <div className="d-flex justify-content-between">
                             <div>
-                                <Header />
+                                <div className="d-flex align-items-center justify-content-between">
+                                  <Header />
+                                  <SaveButton prices={this.state.tickers} />
+                                </div>
                                 <div className="cardsContainer">
                                     {domTickers}
                                 </div>
                             </div>
                             <div className="formContainer">
+                                <h3 className="formTitle">Customize your dashboard</h3>
                                 <Form>
                                     {checkboxes}
                                 </Form>
-                                <SaveButton prices={this.state.tickers} />
                             </div>
                         </div>
                       </Col>

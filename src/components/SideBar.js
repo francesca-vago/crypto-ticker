@@ -8,7 +8,7 @@ const SideBar = () => {
     <div>
       <div className="avatarContainer">
         <img className="avatar-bordered" alt="avatar-bordered" src="https://kitt.lewagon.com/placeholder/users/sarahlafer" />
-        <h3>Sarah Lafer</h3>
+        <h3>Welcome, Sarah Lafer!</h3>
       </div>
       <ListGroup>
         <ListGroupItem className="d-flex">
